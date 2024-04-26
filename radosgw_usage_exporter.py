@@ -123,8 +123,10 @@ class RADOSGWCollector(object):
                 # Usage caps absent or wrong admin entry
                 logging.error(
                     (
-                        "Request error [{0}]: {1}".format(
-                            response.status_code, response.content.decode("utf-8")
+                        "Request error [{0}]: {1} for: {2}".format(
+                            response.status_code,
+                            response.content.decode("utf-8"),
+                            url
                         )
                     )
                 )
@@ -132,7 +134,7 @@ class RADOSGWCollector(object):
 
         # DNS, connection errors, etc
         except requests.exceptions.RequestException as e:
-            logging.info(("Request error: {0}".format(e)))
+            logging.info(("Request error: {0} for: {1}".format(e, url)))
             return
 
     def _setup_empty_prometheus_metrics(self):
