@@ -72,7 +72,7 @@ For haproxy the timeout in question is `timeout server`
 ## Local Installation
 
 ```bash
-git clone git@github.com:blemmenes/radosgw_usage_exporter.git
+git clone https://github.com/stackhpc/radosgw_usage_exporter.git
 cd radosgw_usage_exporter
 pip install requirements.txt
 ```
@@ -100,10 +100,10 @@ pip install requirements.txt
 ## Docker
 
 Docker build
-(https://github.com/pando85/radosgw_usage_exporter/pkgs/container/radosgw_usage_exporter):
+(https://github.com/stackhpc/radosgw_usage_exporter/pkgs/container/radosgw_usage_exporter):
 
 ```bash
-docker run -d -p 9242 ghcr.io/pando85/radosgw_usage_exporter:latest \
+docker run -d -p 9242 ghcr.io/stackhpc/radosgw_usage_exporter:0.1.0 \
 -H <RADOSGW HOST> -a <ACCESS_KEY> -s <SECRET_KEY> -p 9242
 ```
 
