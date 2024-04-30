@@ -31,8 +31,6 @@ jobs:
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
 
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
           docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
               --push \
               -t ghcr.io/${{ github.repository }}:${VERSION} \
