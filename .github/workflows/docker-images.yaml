@@ -1,8 +1,6 @@
 name: Multi-Arch Docker Build and Push to GHCR
 on:
   push:
-    branches:
-      - master
     tags:
       - v*
   workflow_dispatch:
