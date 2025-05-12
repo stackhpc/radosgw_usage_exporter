@@ -33,6 +33,7 @@ class RADOSGWCollector(object):
         self.store = store
         self.insecure = insecure
         self.timeout = timeout
+        self.collect_semaphore = False
 
         # helpers for default schema
         if not self.host.startswith("http"):
@@ -52,6 +53,12 @@ class RADOSGWCollector(object):
         * Collect 'bucket' data:
             http://docs.ceph.com/docs/master/radosgw/adminops/#get-bucket-info
         """
+
+        if self.collect_semaphore:
+            logging.debug("Previous collection still in progress at time "
+                         f"{time.time()}, cancelling collection.")
+            return
+        self.collect_semaphore = True
 
         start = time.time()
         # setup empty prometheus metrics
@@ -83,6 +90,8 @@ class RADOSGWCollector(object):
 
         for metric in list(self._prometheus_metrics.values()):
             yield metric
+
+        self.collect_semaphore = False
 
     def _session(self):
         """
