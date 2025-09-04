@@ -462,6 +462,11 @@ class RADOSGWCollector(object):
         )
         logging.debug((json.dumps(user_info, indent=4, sort_keys=True)))
 
+        if user_info is None:
+            logging.warning(f"Failed to get info for user: {user}. "
+                            "Metrics for this user will not be added.")
+            return
+
         if "display_name" in user_info:
             user_display_name = user_info["display_name"]
         else:
