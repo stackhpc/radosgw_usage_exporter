@@ -31,7 +31,7 @@ jobs:
             type=sha,prefix=
 
       - name: Build and push image
-        uses: azimuth-cloud/github-actions/docker-multiarch-build-push@master
+        uses: azimuth-cloud/github-actions/docker-multiarch-build-push@8771cb1c1db134e99becf314f07db6a84b8d7fbf
         with:
           cache-key: radosgw_usage_exporter
           context: .
